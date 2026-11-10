@@ -1,6 +1,8 @@
-# Heart disease MLOps pipeline
+﻿# Heart disease MLOps pipeline
 
-An end-to-end MLOps lab project: a heart-disease dataset, a Streamlit console to explore and clean it, a DVC pipeline (clean → split → train), and dataset versions saved from the app with DVC + Git tags.
+An end-to-end MLOps lab project: a heart-disease dataset, a Streamlit console to explore and clean it, a DVC pipeline (clean â†’ split â†’ train), and dataset versions saved from the app with DVC + Git tags.
+
+The 3 presentation slides from S1 are in [docs/S1_slides.pptx](docs/S1_slides.pptx), with speaker notes.
 
 ## 1. The problem
 **Goal:** predict whether a patient has heart disease (yes / no) from 13 routine clinical measurements, such as age, chest-pain type, blood pressure, cholesterol and maximum heart rate.
@@ -32,12 +34,12 @@ src/data/get_data.py     builds data/dataset.csv (v1.0) from UCI
 src/data/preprocess.py   DVC stage 1: clean()        (also used by the app)
 src/data/split.py        DVC stage 2: split()        (also used by the app)
 src/train.py             DVC stage 3: train(), writes models/model.pkl + metrics.json
-src/versioning.py        version_data(): dvc add → git commit → git tag → dvc push → git push
+src/versioning.py        version_data(): dvc add â†’ git commit â†’ git tag â†’ dvc push â†’ git push
 params.yaml              every parameter of the pipeline
 dvc.yaml / dvc.lock      the pipeline and the exact state of its last run
 data/dataset.csv.dvc     Git's pointer to the data (the CSV itself lives in DVC)
 tests/test_pipeline.py   every cleaning choice must give trainable data
-ANSWERS.md               answers to the S3 lab questions Q1–Q4
+ANSWERS.md               answers to the S3 lab questions Q1â€“Q4
 ```
 
 ## Run it
@@ -62,7 +64,7 @@ streamlit run app/app.py
    - shows a params.yaml preview and **runs the DVC pipeline**;
    - **Save as new version** with a tag and commit message.
 
-The sidebar can load any past version (`v1.0`, `v1.1`, …) straight from DVC.
+The sidebar can load any past version (`v1.0`, `v1.1`, â€¦) straight from DVC.
 
 ## Dataset versions
 | Tag | How it was made |
