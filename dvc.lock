@@ -1,0 +1,78 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python -m src.data.preprocess
+    deps:
+    - path: data/dataset.csv
+      hash: md5
+      md5: 9dae48e301923a1577850b70e5a1d682
+      size: 20605
+    - path: src/data/preprocess.py
+      hash: md5
+      md5: 2c9bb6c4c8b4a6e5f105257b19ccf9cb
+      size: 1850
+    params:
+      params.yaml:
+        preprocess:
+          drop: []
+          missing: median
+          encoding: one-hot
+    outs:
+    - path: data/processed/clean.csv
+      hash: md5
+      md5: 3df5b37c935aa28765df454193ae4500
+      size: 19645
+  split:
+    cmd: python -m src.data.split
+    deps:
+    - path: data/processed/clean.csv
+      hash: md5
+      md5: 3df5b37c935aa28765df454193ae4500
+      size: 19645
+    - path: src/data/split.py
+      hash: md5
+      md5: 92e12bf31545452ce56d9784fccfd492
+      size: 718
+    params:
+      params.yaml:
+        split:
+          test_size: 0.2
+          seed: 42
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 6cc23bb9515b6ad50eebc8bf38871291
+      size: 4164
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 05c0c12d0a5f6b4b19e7767aac0a8079
+      size: 15744
+  train:
+    cmd: python -m src.train
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 6cc23bb9515b6ad50eebc8bf38871291
+      size: 4164
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 05c0c12d0a5f6b4b19e7767aac0a8079
+      size: 15744
+    - path: src/train.py
+      hash: md5
+      md5: eae9d60b5299b4a5de4ffe3cccaab7fe
+      size: 1582
+    params:
+      params.yaml:
+        train:
+          C: 1.0
+          max_iter: 1000
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: 1a72bd1771d9baeb1aeda377cc486246
+      size: 64
+    - path: models/model.pkl
+      hash: md5
+      md5: 40833976691f31eb389f0cd304a141ab
+      size: 2298

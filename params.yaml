@@ -1,0 +1,10 @@
+preprocess:
+  drop: []          # columns to remove
+  missing: median   # median | mean | mode | knn | ffill | drop
+  encoding: one-hot # one-hot | ordinal | frequency | none
+split:
+  test_size: 0.2
+  seed: 42
+train:
+  C: 1.0
+  max_iter: 1000

@@ -1,0 +1,19 @@
+stages:
+  preprocess:
+    cmd: python -m src.data.preprocess
+    deps: [data/dataset.csv, src/data/preprocess.py]
+    params: [preprocess]
+    outs: [data/processed/clean.csv]
+  split:
+    cmd: python -m src.data.split
+    deps: [data/processed/clean.csv, src/data/split.py]
+    params: [split]
+    outs: [data/processed/train.csv, data/processed/test.csv]
+  train:
+    cmd: python -m src.train
+    deps: [data/processed/train.csv, data/processed/test.csv, src/train.py]
+    params: [train]
+    outs: [models/model.pkl]
+    metrics:
+      - metrics.json:
+          cache: false
