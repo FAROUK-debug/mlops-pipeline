@@ -70,6 +70,6 @@ The sidebar can load any past version (`v1.0`, `v1.1`, …) straight from DVC.
 | v1.0 | raw UCI data |
 | v1.1 | median imputation (no other change) |
 | v1.2 | v1.1 + one-hot encoding |
-| v1.3 | v1.2 without `chol` and `fbs` (weakest columns) |
+| v1.3 | v1.2 without `chol` and `fbs` (the columns least linked to the target) |
 
 `git tag -n` lists the versions with the parameters that produced each one.

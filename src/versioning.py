@@ -6,7 +6,7 @@ import re
 import subprocess
 import sys
 
-import dvc.api
+from dvc.api import read as dvc_read
 import pandas as pd
 
 from src import ROOT
@@ -32,7 +32,7 @@ def load_version(tag: str | None) -> pd.DataFrame:
     """A past version from DVC (cache or remote), or the working copy when tag is None."""
     if tag is None:
         return pd.read_csv(ROOT / DATA)
-    return pd.read_csv(io.StringIO(dvc.api.read(DATA, repo=str(ROOT), rev=tag)))
+    return pd.read_csv(io.StringIO(dvc_read(DATA, repo=str(ROOT), rev=tag)))
 
 
 def version_data(df: pd.DataFrame, tag: str, message: str, params: dict) -> None:

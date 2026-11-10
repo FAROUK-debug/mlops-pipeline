@@ -5,8 +5,8 @@ stages:
     deps:
     - path: data/dataset.csv
       hash: md5
-      md5: 9dae48e301923a1577850b70e5a1d682
-      size: 20605
+      md5: ca37dcb1cfb1a14a71d3e383e84db574
+      size: 17201
     - path: src/data/preprocess.py
       hash: md5
       md5: 2c9bb6c4c8b4a6e5f105257b19ccf9cb
@@ -20,15 +20,15 @@ stages:
     outs:
     - path: data/processed/clean.csv
       hash: md5
-      md5: 3df5b37c935aa28765df454193ae4500
-      size: 19645
+      md5: ca37dcb1cfb1a14a71d3e383e84db574
+      size: 17201
   split:
     cmd: python -m src.data.split
     deps:
     - path: data/processed/clean.csv
       hash: md5
-      md5: 3df5b37c935aa28765df454193ae4500
-      size: 19645
+      md5: ca37dcb1cfb1a14a71d3e383e84db574
+      size: 17201
     - path: src/data/split.py
       hash: md5
       md5: 92e12bf31545452ce56d9784fccfd492
@@ -41,23 +41,23 @@ stages:
     outs:
     - path: data/processed/test.csv
       hash: md5
-      md5: 6cc23bb9515b6ad50eebc8bf38871291
-      size: 4164
+      md5: 29552f70ca137030610598e0d45c25b9
+      size: 3656
     - path: data/processed/train.csv
       hash: md5
-      md5: 05c0c12d0a5f6b4b19e7767aac0a8079
-      size: 15744
+      md5: e61ba472fa68f11e706d7e6f1b9a958f
+      size: 13788
   train:
     cmd: python -m src.train
     deps:
     - path: data/processed/test.csv
       hash: md5
-      md5: 6cc23bb9515b6ad50eebc8bf38871291
-      size: 4164
+      md5: 29552f70ca137030610598e0d45c25b9
+      size: 3656
     - path: data/processed/train.csv
       hash: md5
-      md5: 05c0c12d0a5f6b4b19e7767aac0a8079
-      size: 15744
+      md5: e61ba472fa68f11e706d7e6f1b9a958f
+      size: 13788
     - path: src/train.py
       hash: md5
       md5: eae9d60b5299b4a5de4ffe3cccaab7fe
@@ -74,5 +74,5 @@ stages:
       size: 64
     - path: models/model.pkl
       hash: md5
-      md5: 40833976691f31eb389f0cd304a141ab
-      size: 2298
+      md5: 39e2dd250679b7c567f756186e22ca10
+      size: 2176
