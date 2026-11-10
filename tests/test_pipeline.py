@@ -1,12 +1,14 @@
 """Every cleaning choice must give a dataset the model can train on. Run: python -m pytest tests (or python -m tests.test_pipeline)."""
 import pandas as pd
 
-from src import ROOT, TARGET
+from src import TARGET
 from src.data.preprocess import ENCODING, MISSING, clean
 from src.data.split import split
 from src.train import train
 
-RAW = pd.read_csv(ROOT / "data" / "dataset.csv")
+from src.versioning import load_version
+
+RAW = load_version("v1.0")  # the raw data, whatever version is checked out (needs dvc pull)
 
 
 def test_every_combination_trains():
